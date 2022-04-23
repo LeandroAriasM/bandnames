@@ -39,13 +39,10 @@ class SocketService with ChangeNotifier {
 */
   void _initConfig() {
     // Dart client localhost:3000/
-    this._socket = IO.io(
-        'http://localhost:3000',
-        OptionBuilder()
-            .setTransports(['websocket']) // for Flutter or Dart VM
-            .disableAutoConnect() // disable auto-connection
-            .setExtraHeaders({'foo': 'bar'}) // optional
-            .build());
+    this._socket = IO.io('http://192.168.0.1:3000', <String, dynamic>{
+      'transports': ['websocket'],
+      'extraHeaders': {'foo': 'bar'} // optional
+    });
     socket.connect();
 
     this._socket.on('connect', (_) {
