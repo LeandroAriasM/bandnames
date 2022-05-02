@@ -19,34 +19,17 @@ class SocketService with ChangeNotifier {
     this._initConfig();
   }
 
-  /* void _initConfig() {
-    // Dart client 'http://localhost:3000/'
-    this._socket = IO.io('http://127.0.0.1:3000/', {
-      'transports': ['websocket'],
-      'autoConnect': true
-    });
-
-    this._socket.on('connect', (_) {
-      this._serverStatus = ServerStatus.Online;
-      notifyListeners();
-    });
-
-    this._socket.on('disconnect', (_) {
-      this._serverStatus = ServerStatus.Offline;
-      notifyListeners();
-    });
-  }
-*/
   void _initConfig() {
-    // Dart client localhost:3000/
-    this._socket = IO.io('http://192.168.0.1:3000', <String, dynamic>{
+    // Dart client localhost:3000/   192.168.0.1:3000/
+    this._socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
       'transports': ['websocket'],
-      'extraHeaders': {'foo': 'bar'} // optional
+      //'extraHeaders': {'foo': 'bar'} // optional
     });
-    socket.connect();
+    //socket.connect();
 
     this._socket.on('connect', (_) {
       this._serverStatus = ServerStatus.Online;
+      print("Hola Mundo");
       notifyListeners();
     });
 
@@ -54,5 +37,14 @@ class SocketService with ChangeNotifier {
       this._serverStatus = ServerStatus.Offline;
       notifyListeners();
     });
+
+/*     this._socket.on('nuevo-mensaje', (payload) {
+      //print('nuevo-ensaje: $payload');
+      print('nuevo-ensaje:');
+      print('nombre:' + payload['nombre']);
+      print('mensaje:' + payload['mensaje']);
+      print('mensaje:' + payload['mensaje']);
+      print(payload.containsKey('mensaje2') ? payload['mensaje2'] : 'no hay');
+    }); */
   }
 }
