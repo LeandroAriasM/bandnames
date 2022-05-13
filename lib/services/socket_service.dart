@@ -21,7 +21,9 @@ class SocketService with ChangeNotifier {
 
   void _initConfig() {
     // Dart client localhost:3000/   192.168.0.1:3000/
-    this._socket = IO.io('http://10.0.2.2:3000', <String, dynamic>{
+    //'http://10.0.2.2:3000'
+    this._socket =
+        IO.io('https://bandnames01.herokuapp.com/', <String, dynamic>{
       'transports': ['websocket'],
       //'extraHeaders': {'foo': 'bar'} // optional
     });

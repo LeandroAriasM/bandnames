@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
                 itemCount: bands.length,
                 itemBuilder: (context, i) => _bandTile(bands[i])),
-          )
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -163,14 +163,17 @@ class _HomePageState extends State<HomePage> {
 
     Navigator.pop(context);
   }
+//TODO: Arregrla el problema del Map vacio
+// porque la PieChart no puede empezar sin datos.
 
   Widget _showGraph() {
-    Map<String, double> dataMap = new Map();
+    Map<String, double> dataMap = {"App Band..": 0.0};
+
     bands.forEach((band) {
       dataMap.putIfAbsent(band.name, () => band.votes.toDouble());
     });
 
-    return Container(
-        width: double.infinity, height: 200, child: PieChart(dataMap: dataMap));
+    return PieChart(dataMap: dataMap);
+    //Container(width: double.infinity, height: 200, child: PieChart(dataMap: dataMap));
   }
 }
